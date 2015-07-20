@@ -1,0 +1,122 @@
+<?!=include_("myInterfaceStyles")?>
+  <script>
+  //I should make the removeRequest more proper, but for now, this works
+    function success(token) {
+      alert("Success!");
+
+    }
+    //WILL THIS WORK??? YUHESSSS!
+    function approveAccount(names) {
+      document.getElementById('myspinner').style.visibility = 'hidden'
+      var username = names[0];
+      var realname = names[1];
+      var table = document.getElementById("dashboard");
+      var newStuffToAdd = "<tr class='username'>" +
+      "<td><input type='button' value='X' onclick='google.script.run.withSuccessHandler(removeAccountOrRequest).deleteAccount(\"token\", \"username\")' ></td>" +
+      "<td>Insert Real Name Here</td>" +
+      "<td colspan='2'>No current booking requests</td>" +
+      "</tr>";
+      newStuffToAdd = newStuffToAdd.replace(/token/g, names[2]);
+      newStuffToAdd = newStuffToAdd.replace(/username/g, username);
+      newStuffToAdd = newStuffToAdd.replace("Insert Real Name Here", realname);
+      table.innerHTML += newStuffToAdd;
+      removeAccountOrRequest("potential:"+username);
+    }
+    function setApproved(id) {
+      document.getElementById('myspinner').style.visibility = 'hidden'
+      var actionArea = document.getElementById(id);
+      actionArea.innerHTML = "Awaiting their confirmation.";
+    }
+    //does not work waiting cancwl
+    function removeAccountOrRequest(user) {
+      removeElementsByClass(user);
+      document.getElementById("myspinner").style.visibility = "hidden";
+    }
+    function removeElementsByClass(className){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+    }
+    
+    function writePageString(html) {
+      document.open();
+      document.write(html);
+    }
+  </script>
+<style>
+td {
+  border: 1px solid black
+}
+#removeAccount {
+  height:100%;
+  width:50px;
+}
+.dashHeader {
+  font-family:Arial, Sans-Serif;
+}
+.boxed {
+  text-align:center;
+  display: inline-block;
+  position:relative;
+  top:30%;
+  width:700px;
+}
+#incorrectPasswordWarning {
+  color:red;
+  font-size:18px;
+  font-weight:bold;
+}
+</style>
+<script>google.script.run.warmUpServer();</script>
+<!--<div style="text-align: center">
+	<h1>Enter the admin password</h1>
+    <script>
+    function writePageString(html) {
+      document.open();
+      document.write(html);
+    }
+    </script>
+	<form action="" onsubmit="google.script.run.withSuccessHandler(writePageString).giveDash(this); document.getElementById('myspinner').style.visibility = 'visible'">
+		<p>
+			Password <input type="password" name="pwd">
+		</p>
+        <input type="hidden" name="whereFrom" value="adminPasswordCheck">
+		<p>
+			<input type="submit" value="Submit">
+            <img src="http://www.ecr.co.za/static/kagiso_common/images/spinner.gif" style="visibility:hidden" id="myspinner">
+		</p>
+	</form>
+</div> -->
+<div id='xeap'>
+<div id='wrapper'>
+<div class='boxed'>
+
+	<form onsubmit="google.script.run.withSuccessHandler(writePageString).giveDash(this); startSpinner()" class="gatewayform">
+		<p>
+			<input type="password" name="pwd" class="inputter" placeholder=" Password" style="padding-left:0px">
+		</p>
+        <input type="hidden" name="whereFrom" class="inputter" value="adminPasswordCheck">
+		<p>
+			<input type="submit" value="Submit" id="sub" onmousedown="this.style.boxShadow = 'inset 0px 0px 17px 2px'" onmouseout="this.style.boxShadow = '0px 0px 0px 0px'" onmouseup="this.style.boxShadow = '0px 0px 0px 0px'">
+		</p>
+	</form>
+    <p id="incorrectPasswordWarning"></p>
+    <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='myspinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+</div>
+</div>
+</div>
+<script>
+function writePageString(htmlString) {
+  if (htmlString !== "") {
+    document.getElementById('wrapper').innerHTML = htmlString;
+  } else {
+    document.getElementById("incorrectPasswordWarning").innerHTML = "Wrong password! Try again, hacker. ;)"
+    document.getElementById("myspinner").style.visibility = 'hidden';
+  }
+}
+function startSpinner() {
+       var spinner = document.getElementById('myspinner');
+              spinner.style.visibility = 'visible';
+}
+</script>

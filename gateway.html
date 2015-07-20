@@ -1,0 +1,89 @@
+<? if (notLoggingOut) { ?>
+
+<img style='margin-left:auto; margin-right:auto' id='firstspinner' src='http://www.thesepaperhearts.com/wp-content/uploads/2014/01/loading.gif'>
+<? } ?>
+<?!=include_("myInterfaceStyles")?>
+<style type="text/css">
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Open Sans Bold'), local('OpenSans-Bold'),
+		url(//fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2)
+		format('woff2');
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 700;
+	src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'),
+		url(//fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxolIZu-HDpmDIZMigmsroc4.woff2)
+		format('woff2');
+}
+
+@font-face {
+	font-family: 'Architects Daughter';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Architects Daughter'), local('ArchitectsDaughter'),
+		url(//fonts.gstatic.com/s/architectsdaughter/v6/RXTgOOQ9AAtaVOHxx0IUBM3t7GjCYufj5TXV5VnA2p8.woff2)
+		format('woff2');
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 400;
+	src: local('Open Sans Italic'), local('OpenSans-Italic'),
+		url(//fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBo4P5ICox8Kq3LLUNMylGO4.woff2)
+		format('woff2');
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'),
+		url(//fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2)
+		format('woff2');
+}
+
+</style>
+
+<?!=include_("skitheme")?>
+<!--<link rel="stylesheet" type="text/css"
+	href="/site/houseonmalabar/_/rsrc/1416990942000/system/app/css/overlay.css?cb=ski29a900px250150goog-ws-nav-nosidenone30middlecenter">-->
+<!--<link rel="stylesheet" type="text/css"
+	href="/site/houseonmalabar/_/rsrc/1416990942000/system/app/css/camelot/allthemes-view.css">-->
+<?!=include_("siteScripts")?>
+<script>
+var myspin = document.getElementById('firstspinner');
+myspin.parentNode.removeChild(myspin);
+google.script.run.warmUpServer();
+</script>
+<div id='xeap'>
+<div id='wrapper'>
+<div class='boxed'>
+
+	<form class="gatewayform" onsubmit='startSpinner();google.script.run.withSuccessHandler(successIsGood).withFailureHandler(fail).passwordCheck(this); return false;'>
+		<p>
+			<input type='text' name='user' placeholder=' Email' class='inputter' id='firstinput' required>
+		</p>
+		<p>
+			<input type='password' name='pwd' placeholder=' Password' class='inputter' required>
+		</p>
+		<p>
+			<input type='submit'
+				value='Log In' id='sub' onmousedown="this.style.boxShadow = 'inset 0px 0px 17px 2px'" onmouseout="this.style.boxShadow = '0px 0px 0px 0px'" onmouseup="this.style.boxShadow = '0px 0px 0px 0px'">
+		</p>
+	</form>
+    <div id='bottomlinks-wrapper'>
+	<p><a class='bottomlinks' onclick='startSpinner(); google.script.run.withSuccessHandler(successIsGood).giveBasic("create"); return false;'>Don't have an account? Click here to register</a></p>
+    <p><a class='bottomlinks' onclick='startSpinner(); google.script.run.withSuccessHandler(successIsGood).giveBasic("forgot"); return false;'>Forgot your password? Reset here.</a></p>
+    <p id="invalidCredentials">Invalid credentials! Try again.</p>
+    <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='myspinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+    </div>
+</div>
+</div>
+</div>

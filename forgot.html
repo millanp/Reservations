@@ -1,0 +1,22 @@
+<div id="wrapper">
+<div class="boxed">
+  <form  class="gatewayform" onsubmit="startSpinner(); google.script.run.withSuccessHandler(onSent).sendPasswordChangeMail(this)">
+    <p><input type="email" name="username" class="inputter" placeholder=" Email" required></p>
+    <p><input type="submit" value="Send Change Instructions" id="sub" onmousedown="this.style.boxShadow = 'inset 0px 0px 17px 2px'" onmouseout="this.style.boxShadow = '0px 0px 0px 0px'" onmouseup="this.style.boxShadow = '0px 0px 0px 0px'"></p>
+    <a class="bottomlinks" onclick="startSpinner(); google.script.run.withSuccessHandler(successIsGood).giveBasic('gateway'); return false;">Back to login</a><br>
+    <img style="visibility:hidden;height:100px;width:100px" class="spinner" id="myspinner" src="http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif">
+  </form>
+    <p id="sentMessageForgot" style="font-weight:bold; color:green; visibility:hidden;">If this is a valid username, you will be emailed instructions to reset your password.</p>
+
+
+  </div>
+  </div>
+<style>
+.boxed {
+  text-align:center;
+  display: inline-block;
+  position:relative;
+  top:30%;
+  width:500px;
+}
+</style>

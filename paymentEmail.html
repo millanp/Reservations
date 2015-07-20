@@ -1,0 +1,17 @@
+<form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top">
+  <div class="hide" id="errorBox"></div>
+  <input type="hidden" name="button" value="buynow">
+  <input type="hidden" name="item_name" value="Malabar House non-family upkeep fee">
+  <input type="hidden" name="quantity" value="1">
+  <input type="hidden" name="amount" value="5">
+  <input type="hidden" name="currency_code" value="USD">
+  <input type="hidden" name="shipping" value="0">
+  <input type="hidden" name="tax" value="0">
+  <input type="hidden" name="notify_url" value="https://script.google.com/macros/s/AKfycbx9i34rLM6A7Q4qzdhX_8BM_WV9V8ElNh28X9su9h4_avJwTCY/exec">
+  <input type="hidden" name="env" value="www.sandbox">
+  <input type="hidden" name="cmd" value="_xclick">
+  <input type="hidden" name="business" value="matthai.philipose@gmail.com">
+  <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+  <input type="hidden" name="custom" value="<?=orderId?>">
+  <button type="submit" class="paypal-button large">Buy Now</button>
+</form>";

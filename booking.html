@@ -1,0 +1,71 @@
+
+							<div id="sites-chrome-main-wrapper-inside">
+								<table id="sites-chrome-main" class="sites-layout-hbox"
+									cellspacing="0" cellpadding="{scmCellpadding}" border="0">
+									<tbody>
+										<tr>
+											
+											<td id="sites-canvas-wrapper">
+												<div id="sites-canvas" role="main">
+													<div id="goog-ws-editor-toolbar-container"></div>
+													<div xmlns="http://www.w3.org/1999/xhtml" id="title-crumbs"
+														style=""></div>
+													
+													<div id="sites-canvas-main" style="padding-top:0px" class="sites-canvas-main">
+														<div id="sites-canvas-main-content">
+															<table xmlns="http://www.w3.org/1999/xhtml"
+																cellspacing="0"
+																class="sites-layout-name-one-column sites-layout-hbox">
+																<tbody>
+																	<tr>
+																		<td
+																			class="sites-layout-tile sites-tile-name-content-1"><div
+																				dir="ltr" id="bookingFormWrapper">
+                                                                                <h1>
+                                                                                  <span id="sites-page-title" dir="ltr">Get a room</span>
+                                                                                </h1><br>
+                                                                                <form id="bookingForm" onsubmit="startBookingSpinner(); checkAndSubmitBooking(this);">
+                                                                                  <div class="bookingBlock">
+                                                                                    <b>Choose your rooms <a href="https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&amp;color=%2342104A&amp;src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&amp;color=%23125A12&amp;src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&amp;color=%236B3304&amp;src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&amp;color=%238C500B&amp;src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&amp;color=%23865A5A&amp;src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&amp;color=%23691426&amp;src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&amp;color=%23853104&amp;src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&amp;color=%2323164E&amp;ctz=America%2FLos_Angeles" target="_blank">(availability calendar)</a></b><br>
+                                                                                    <input type="hidden" name="name" value="<?=realname?>">
+                                                                                    <input type="hidden" name="email" value="<?=user?>">
+                                                                                    <label><input type="checkbox" id="wholeHouseCheckbox" onclick="checkRooms(this);"> Whole House</label> <br>
+                                                                                    Or<br>
+                                                                                    <label><input type="checkbox" name="rooms"  value="Room 1" onclick="checkWholeHouse()"> Room 1 </label><br>
+                                                                                    <label><input type="checkbox" name="rooms"  value="Room 2" onclick="checkWholeHouse()"> Room 2 </label><br>
+                                                                                    <label><input type="checkbox" name="rooms"  value="Room 3" onclick="checkWholeHouse()"> Room 3 </label><br>
+                                                                                    <label><input type="checkbox" name="rooms"  value="Room 4" onclick="checkWholeHouse()"> Room 4 </label><br>
+                                                                                  </div>
+                                                                                  
+                                                                                  
+                                                                                
+                                                                                  <div class="bookingBlock">
+                                                                                    <b>Enter arrival and departure dates</b><br>
+                                                                                    <input type="text" id="arrive" name="arrive" required placeholder="Arrive..."><br>
+                                                                                    <input type="text" id="leave" name="leave" required placeholder="Depart..."><br>
+                                                                                    <b>Extra services?</b><br>
+                                                                                    <input type="checkbox" name="extras" value="extra1">extra1<br>
+                                                                                    <input type="checkbox" name="extras" value="extra2">extra2<br>
+                                                                                    <input type="checkbox" name="extras" value="extra3">extra3
+                                                                                  </div><br>
+                                                                                    <input type="submit" value="SUBMIT" id="bookingSubmit" onmousedown="this.style.backgroundColor = 'rgba(13, 72, 118, 1)'" onmouseup="this.style.backgroundColor = 'rgba(30, 105, 163, 1)'" onmouseout="this.style.backgroundColor = 'rgba(30, 105, 163, 1)'">
+                                                                                </form>
+																				
+                                                                                <p id="bookingConfirmationMessage"></p>
+                                                                                <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='bookingSpinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+
+                                                                                
+																			</div></td>
+																	</tr>
+																</tbody>
+															</table>
+									</div>
+									</div>
+									
+									</div>
+									</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+					

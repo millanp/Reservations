@@ -1,0 +1,166 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script>
+function select(liObject) {
+  var x = document.getElementsByClassName("current");
+  var i;
+  x[0].className = "unselected";
+  for (i = 0; i < x.length; i++) {
+      x[i].className = "unselected";
+  }
+  
+  liObject.className = "current";
+}
+function stringContainsString(string, checkIfInString) {
+  return string.indexOf(checkIfInString) > -1;
+}
+function fixDates() {
+  $(document).ready(function() {
+      $("#arrive").datepicker();
+  $("#leave").datepicker();
+  });
+
+}
+function checkWholeHouse() {
+  var x = document.getElementsByName("rooms");
+  var allChecked = true;
+  var i;
+  for (i = 0; i < x.length; i++) {
+    if (x[i].type == "checkbox") {
+      if (x[i].checked === false) {
+        allChecked = false;
+      }
+    }
+  }
+  if (allChecked === true) {
+    document.getElementById("wholeHouseCheckbox").checked = true;
+  } else {
+    document.getElementById("wholeHouseCheckbox").checked = false;
+  }
+}
+function checkRooms(box) {
+  var goingToChecked = box.checked;
+  var x = document.getElementsByName("rooms");
+  var i;
+  for (i = 0; i < x.length; i++) {
+    if (x[i].type == "checkbox") {
+        x[i].checked = goingToChecked;
+    }
+  }
+}
+function checkAndSubmitBooking(form) {
+  var roomList = document.getElementsByName("rooms");
+  var anyChecked = false;
+  for (var i = 0; i < roomList.length; i++) {
+    var checkbox = roomList[i];
+    if (checkbox.checked === true) {
+      anyChecked = true;
+    }
+  }
+  if (anyChecked === true) {
+    var start = new Date(document.getElementById("arrive").value);
+    var end = new Date(document.getElementById("leave").value);
+    if (start.getTime() < end.getTime()) {
+      google.script.run.withSuccessHandler(showBookingConfirmation).errorCheck(form);
+    } else {
+      var conf = document.getElementById("bookingConfirmationMessage");
+      conf.style.color = "red";
+      conf.innerHTML = "Start date is after end date";
+      document.getElementById("bookingSpinner").style.visibility = "hidden";  
+    }
+  } else {
+    var conf = document.getElementById("bookingConfirmationMessage");
+    conf.style.color = "red";
+    conf.innerHTML = "Please select a room";
+    document.getElementById("bookingSpinner").style.visibility = "hidden";  
+  }
+}
+function showBookingConfirmation(isAvailable) {
+  document.getElementById("bookingSpinner").style.visibility = "hidden";
+  var conf = document.getElementById("bookingConfirmationMessage");
+  if (isAvailable==="Your response has been recorded") {
+    conf.style.color = "green";
+    conf.innerHTML = "Great! Submitted!"
+  } else {
+    if (stringContainsString(isAvailable, "existing booking")){};
+    conf.style.color = "red";
+    conf.innerHTML = isAvailable;
+  }
+  
+}
+function startBookingSpinner() {
+  document.getElementById("bookingSpinner").style.visibility = "visible";
+}
+function onSent() {
+  document.getElementById('myspinner').style.visibility = "hidden";
+  document.getElementById('sentMessageForgot').style.visibility = "visible";
+}
+function whatever() {
+  alert('hello!');
+}
+function writeFullPageString(htmlString) {
+  
+  document.getElementById('xeap').innerHTML = htmlString;
+}
+function writePageString(htmlString) {
+  document.getElementById('sites-chrome-main-wrapper').innerHTML = htmlString;
+  fixDates();
+  document.getElementById('smallerSpinner').style.visibility = "hidden";
+}
+function docWritePageString(html) {
+  document.open();
+  document.write(html);
+}
+function successIsGood(htmlString) {
+            
+			if (htmlString === false) {
+				fail();
+			} else {
+//                document.open();
+//                google.script.run.withSuccessHandler(proceed).giveHomestyle();
+                
+                writeFullPageString(htmlString);
+			}
+		}
+function startSpinner() {
+       var spinner = document.getElementById('myspinner');
+              spinner.style.visibility = 'visible';
+}
+function startSmallerSpinner() {
+  document.getElementById('smallerSpinner').style.visibility = 'visible';
+}
+function fail(e) {
+  document.getElementById('firstinput').select();
+  document.getElementById('myspinner').style.visibility = 'hidden';
+  document.getElementById('invalidCredentials').style.visibility = 'visible';
+}
+function startSpinner() {
+       var spinner = document.getElementById("myspinner");
+              spinner.style.visibility = "visible";
+}
+function success(usernameIsAvailable) {   
+  var message = document.getElementById("errorMessageCreate");
+  if (usernameIsAvailable === true) {
+    message.style.color = "green";
+    message.innerHTML = "Account request submitted.";
+  } else {
+    message.style.color = "red";
+    message.innerHTML = "Username is taken";
+  }
+  document.getElementById("myspinner").style.visibility = "hidden";
+}
+function checkAndSubmit(formElement) {
+  var first = formElement.elements[2].value;
+  var second = formElement.elements[3].value;
+  if (first !== second) {
+    formElement.elements[2].select();
+    document.getElementById("errorMessageCreate").innerHTML = "Your passwords do not match"
+    return;
+  }
+  google.script.run.withSuccessHandler(success).sendAccountRequest(formElement);
+  document.getElementById("myspinner").style.visibility = "visible";
+}
+function disableSheet() {
+document.getElementById("tobedisabled").disabled=true;
+}
+</script>

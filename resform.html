@@ -1,0 +1,244 @@
+<head>
+<?!=include_("resformStyles")?>
+    <script type="text/javascript">
+          /**
+ * @license
+ *! H5F
+ * https://github.com/ryanseddon/H5F/
+ * Copyright (c) Ryan Seddon | Licensed MIT
+ */
+
+(function(e,t){"function"==typeof define&&define.amd?define(t):e.H5F=t()})(this,function(){var e,t,a,i,n,r,s,l,u,o,c,d,v,f,p,m,h,g,b,y,w,C,N,A,E,$,k=document,x=k.createElement("input"),q=/^[a-zA-Z0-9.!#$%&'*+-\/=?\^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,M=/[a-z][\-\.+a-z]*:\/\//i,L=/^(input|select|textarea)$/i;return r=function(e,t){var a=!e.nodeType||!1,i={validClass:"valid",invalidClass:"error",requiredClass:"required",placeholderClass:"placeholder"};if("object"==typeof t)for(var r in i)t[r]===void 0&&(t[r]=i[r]);if(n=t||i,a)for(var l=0,u=e.length;u>l;l++)s(e[l]);else s(e)},s=function(a){var i,n=a.elements,r=n.length,s=!!a.attributes.novalidate;if(b(a,"invalid",u,!0),b(a,"blur",u,!0),b(a,"input",u,!0),b(a,"keyup",u,!0),b(a,"focus",u,!0),b(a,"change",u,!0),b(a,"click",o,!0),b(a,"submit",function(i){e=!0,t||s||a.checkValidity()||w(i)},!1),!v())for(a.checkValidity=function(){return c(a)};r--;)i=!!n[r].attributes.required,"fieldset"!==n[r].nodeName.toLowerCase()&&l(n[r])},l=function(e){var t=e,a=g(t),n={type:t.getAttribute("type"),pattern:t.getAttribute("pattern"),placeholder:t.getAttribute("placeholder")},r=/^(email|url)$/i,s=/^(input|keyup)$/i,l=r.test(n.type)?n.type:n.pattern?n.pattern:!1,u=f(t,l),o=m(t,"step"),v=m(t,"min"),h=m(t,"max"),b=!(""===t.validationMessage||void 0===t.validationMessage);t.checkValidity=function(){return c.call(this,t)},t.setCustomValidity=function(e){d.call(t,e)},t.validity={valueMissing:a,patternMismatch:u,rangeUnderflow:v,rangeOverflow:h,stepMismatch:o,customError:b,valid:!(a||u||o||v||h||b)},n.placeholder&&!s.test(i)&&p(t)},u=function(e){var t=C(e)||e,a=/^(input|keyup|focusin|focus|change)$/i,r=/^(submit|image|button|reset)$/i,s=/^(checkbox|radio)$/i,o=!0;!L.test(t.nodeName)||r.test(t.type)||r.test(t.nodeName)||(i=e.type,v()||l(t),t.validity.valid&&(""!==t.value||s.test(t.type))||t.value!==t.getAttribute("placeholder")&&t.validity.valid?(A(t,[n.invalidClass,n.requiredClass]),N(t,n.validClass)):a.test(i)?t.validity.valueMissing&&A(t,[n.requiredClass,n.invalidClass,n.validClass]):t.validity.valueMissing?(A(t,[n.invalidClass,n.validClass]),N(t,n.requiredClass)):t.validity.valid||(A(t,[n.validClass,n.requiredClass]),N(t,n.invalidClass)),"input"===i&&o&&(y(t.form,"keyup",u,!0),o=!1))},c=function(t){var a,i,n,r,s=!1;if("form"===t.nodeName.toLowerCase()){a=t.elements;for(var l=0,o=a.length;o>l;l++)i=a[l],n=!!i.attributes.required,r=!!i.attributes.pattern,"fieldset"!==i.nodeName.toLowerCase()&&(n||r&&n)&&(u(i),i.validity.valid||s||(e&&i.focus(),s=!0));return!s}return u(t),t.validity.valid},d=function(e){var t=this;t.validationMessage=e},o=function(e){var a=C(e);a.attributes.formnovalidate&&"submit"===a.type&&(t=!0)},v=function(){return E(x,"validity")&&E(x,"checkValidity")},f=function(e,t){if("email"===t)return!q.test(e.value);if("url"===t)return!M.test(e.value);if(t){var i=e.getAttribute("placeholder"),n=e.value;return a=RegExp("^(?:"+t+")$"),n===i?!1:""===n?!1:!a.test(e.value)}return!1},p=function(e){var t={placeholder:e.getAttribute("placeholder")},a=/^(focus|focusin|submit)$/i,r=/^(input|textarea)$/i,s=/^password$/i,l=!!("placeholder"in x);l||!r.test(e.nodeName)||s.test(e.type)||(""!==e.value||a.test(i)?e.value===t.placeholder&&a.test(i)&&(e.value="",A(e,n.placeholderClass)):(e.value=t.placeholder,b(e.form,"submit",function(){i="submit",p(e)},!0),N(e,n.placeholderClass)))},m=function(e,t){var a=parseInt(e.getAttribute("min"),10)||0,i=parseInt(e.getAttribute("max"),10)||!1,n=parseInt(e.getAttribute("step"),10)||1,r=parseInt(e.value,10),s=(r-a)%n;return g(e)||isNaN(r)?"number"===e.getAttribute("type")?!0:!1:"step"===t?e.getAttribute("step")?0!==s:!1:"min"===t?e.getAttribute("min")?a>r:!1:"max"===t?e.getAttribute("max")?r>i:!1:void 0},h=function(e){var t=!!e.attributes.required;return t?g(e):!1},g=function(e){var t=e.getAttribute("placeholder"),a=/^(checkbox|radio)$/i,i=!!e.attributes.required;return!(!i||""!==e.value&&e.value!==t&&(!a.test(e.type)||$(e)))},b=function(e,t,a,i){E(window,"addEventListener")?e.addEventListener(t,a,i):E(window,"attachEvent")&&window.event!==void 0&&("blur"===t?t="focusout":"focus"===t&&(t="focusin"),e.attachEvent("on"+t,a))},y=function(e,t,a,i){E(window,"removeEventListener")?e.removeEventListener(t,a,i):E(window,"detachEvent")&&window.event!==void 0&&e.detachEvent("on"+t,a)},w=function(e){e=e||window.event,e.stopPropagation&&e.preventDefault?(e.stopPropagation(),e.preventDefault()):(e.cancelBubble=!0,e.returnValue=!1)},C=function(e){return e=e||window.event,e.target||e.srcElement},N=function(e,t){var a;e.className?(a=RegExp("(^|\\s)"+t+"(\\s|$)"),a.test(e.className)||(e.className+=" "+t)):e.className=t},A=function(e,t){var a,i,n="object"==typeof t?t.length:1,r=n;if(e.className)if(e.className===t)e.className="";else for(;n--;)a=RegExp("(^|\\s)"+(r>1?t[n]:t)+"(\\s|$)"),i=e.className.match(a),i&&3===i.length&&(e.className=e.className.replace(a,i[1]&&i[2]?" ":""))},E=function(e,t){var a=typeof e[t],i=RegExp("^function|object$","i");return!!(i.test(a)&&e[t]||"unknown"===a)},$=function(e){for(var t=document.getElementsByName(e.name),a=0;t.length>a;a++)if(t[a].checked)return!0;return!1},{setup:r}});
+
+    </script>
+    <style type="text/css"></style>
+    <link rel="alternate" type="text/xml+oembed" href="https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/oembed?url=https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/viewform&amp;format=xml">
+    <meta property="og:title" content="Reservations">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Google Docs">
+    <meta property="og:url" content="https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/viewform">
+    <meta property="og:image" content="https://ssl.gstatic.com/docs/forms/social/social-forms.png">
+    <meta property="og:image:width" content="90">
+    <meta property="og:image:height" content="90">
+</head>
+<body dir="ltr" class="ss-base-body">
+<div id="backgroundWrapper">
+    <div itemscope="" itemtype="http://schema.org/CreativeWork/FormObject">
+        <meta itemprop="name" content="Reservations">
+
+
+        <meta itemprop="url" content="https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/viewform">
+        <meta itemprop="embedUrl" content="https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/viewform?embedded=true">
+        <meta itemprop="faviconUrl" content="https://ssl.gstatic.com/docs/spreadsheets/forms/favicon_jfk2.png">
+
+
+
+
+
+        <div class="ss-form-container" style="background-color:rgba(255,251,239, 0.5)">
+            <div class="ss-header-image-container"><div class="ss-header-image-image"><div class="ss-header-image-sizer"></div></div></div>
+            <div class="ss-top-of-page">
+                <div class="ss-form-heading">
+                    <h1 class="ss-form-title" dir="ltr">Reservations</h1>
+
+
+                    <div class="ss-required-asterisk" aria-hidden="true">* Required</div>
+                </div>
+            </div>
+            <div class="ss-form">
+                <form action="https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/formResponse" method="POST" id="ss-form" target="_self" onsubmit="">
+                    <ol role="list" class="ss-question-list" style="padding-left: 0">
+                        <div class="ss-form-question errorbox-good" role="listitem">
+                            <div dir="ltr" class="ss-item  ss-radio">
+                                <div class="ss-form-entry">
+                                    <label class="ss-q-item-label" for="entry_1903123111">
+                                        <div class="ss-q-title">
+                                            Pricing
+                                        </div>
+                                        <div class="ss-q-help ss-secondary-text" dir="ltr">Personal friends of Sheri, and family, are welcome to use this house for free. However, a token amount of ________ Rs. will be charged for others.</div>
+                                    </label>
+
+                                    <ul class="ss-choices" role="radiogroup" aria-label="Pricing Personal friends of Sheri, and family, are welcome to use this house for free. However, a token amount of ________ Rs. will be charged for others. ">
+
+                                    </ul>
+                                    <div class="error-message" id="1903123111_errorMessage"></div>
+                                    <div class="required-message">This is a required question</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ss-form-question errorbox-good" role="listitem">
+                            <div dir="ltr" class="ss-item ss-item-required ss-checkbox">
+                                <div class="ss-form-entry">
+                                    <label class="ss-q-item-label" for="entry_1590054442">
+                                        <div class="ss-q-title">
+                                            Which room(s) would you like?
+                                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                            <span class="ss-required-asterisk">*</span>
+                                        </div>
+                                        <div class="ss-q-help ss-secondary-text" dir="ltr">Note that if you sign up for a certain room, there is a chance that you will be sharing the house with someone else that Sheri knows. You can check the reservation calendar for more information about sharing and availability.</div>
+                                    </label>
+
+                                    <ul class="ss-choices ss-choices-required" role="group" aria-label="Which room(s) would you like? Note that if you sign up for a certain room, there is a chance that you will be sharing the house with someone else that Sheri knows. You can check the reservation calendar for more information about sharing and availability. ">
+                                        <li class="ss-choice-item">
+                                            <label>
+                                                <span class="ss-choice-item-control goog-inline-block"><input type="checkbox" name="entry.1788478969" value="Whole house" id="group_1788478969_1" role="checkbox" class="ss-q-checkbox" aria-required="true" style="-webkit-appearance:checkbox"></span>
+                                                <span class="ss-choice-label">Whole house</span>
+                                            </label>
+                                        </li>
+                                        <li class="ss-choice-item">
+                                            <label>
+                                                <span class="ss-choice-item-control goog-inline-block"><input type="checkbox" name="entry.1788478969" value="Room 1" id="group_1788478969_2" role="checkbox" class="ss-q-checkbox" aria-required="true" style="-webkit-appearance:checkbox"></span>
+                                                <span class="ss-choice-label">Room 1</span>
+                                            </label>
+                                        </li>
+                                        <li class="ss-choice-item">
+                                            <label>
+                                                <span class="ss-choice-item-control goog-inline-block"><input type="checkbox" name="entry.1788478969" value="Room 2" id="group_1788478969_3" role="checkbox" class="ss-q-checkbox" aria-required="true" style="-webkit-appearance:checkbox"></span>
+                                                <span class="ss-choice-label">Room 2</span>
+                                            </label>
+                                        </li>
+                                        <li class="ss-choice-item">
+                                            <label>
+                                                <span class="ss-choice-item-control goog-inline-block"><input type="checkbox" name="entry.1788478969" value="Room 3" id="group_1788478969_4" role="checkbox" class="ss-q-checkbox" aria-required="true" style="-webkit-appearance:checkbox"></span>
+                                                <span class="ss-choice-label">Room 3</span>
+                                            </label>
+                                        </li>
+                                        <li class="ss-choice-item">
+                                            <label>
+                                                <span class="ss-choice-item-control goog-inline-block"><input type="checkbox" name="entry.1788478969" value="Room 4" id="group_1788478969_5" role="checkbox" class="ss-q-checkbox" aria-required="true" style="-webkit-appearance:checkbox"></span>
+                                                <span class="ss-choice-label">Room 4</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <div class="error-message" id="1590054442_errorMessage"></div>
+                                    <div class="required-message">This is a required question</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ss-form-question errorbox-good" role="listitem">
+                            <div dir="ltr" class="ss-item ss-item-required ss-date">
+                                <div class="ss-form-entry">
+                                    <label class="ss-q-item-label" for="entry_1296939032">
+                                        <div class="ss-q-title">
+                                            When will you arrive?
+                                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                            <span class="ss-required-asterisk">*</span>
+                                        </div>
+                                        <div class="ss-q-help ss-secondary-text" dir="ltr">DOUBLE CHECK your dates</div>
+                                    </label>
+                                    <input type="date" name="entry.1296939032" value="" class="ss-q-date" dir="auto" id="entry_1296939032" aria-label="When will you arrive? DOUBLE CHECK your dates " aria-required="true" required="">
+                                    <div class="required-message">This is a required question</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ss-form-question errorbox-good" role="listitem">
+                            <div dir="ltr" class="ss-item ss-item-required ss-date">
+                                <div class="ss-form-entry">
+                                    <label class="ss-q-item-label" for="entry_2108423837">
+                                        <div class="ss-q-title">
+                                            When will you leave the house (day after your last night)?
+                                            <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+                                            <span class="ss-required-asterisk">*</span>
+                                        </div>
+                                        <div class="ss-q-help ss-secondary-text" dir="ltr">DOUBLE CHECK your dates</div>
+                                    </label>
+                                    <input type="date" name="entry.2108423837" value="" class="ss-q-date" dir="auto" id="entry_2108423837" aria-label="When will you spend your last night? DOUBLE CHECK your dates " aria-required="true" required="">
+                                    <div class="required-message">This is a required question</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ss-form-question errorbox-good" role="listitem">
+                            <div dir="ltr" class="ss-item  ss-checkbox">
+                                <div class="ss-form-entry">
+                                    <label class="ss-q-item-label" for="entry_1621103921">
+                                        <div class="ss-q-title">
+                                            Would you like any of these extra services?
+                                        </div>
+                                        <div class="ss-q-help ss-secondary-text" dir="ltr"></div>
+                                    </label>
+
+                                    <ul class="ss-choices" role="group" aria-label="Would you like any of these extra services?  ">
+                                        <li class="ss-choice-item">
+                                            <label>
+                                                <span class="ss-choice-item-control goog-inline-block"><input type="checkbox" name="entry.172066212" value="Option" id="group_172066212_1" role="checkbox" class="ss-q-checkbox"></span>
+                                                <span class="ss-choice-label">Option</span>
+                                            </label>
+                                        </li>
+                                        <li class="ss-choice-item">
+                                            <label>
+                                                <span class="ss-choice-item-control goog-inline-block"><input type="checkbox" name="entry.172066212" value="" id="group_172066212_2" role="checkbox" class="ss-q-checkbox"></span>
+                                                <span class="ss-choice-label"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <div class="error-message" id="1621103921_errorMessage"></div>
+                                    <div class="required-message">This is a required question</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="draftResponse" value="[,,&quot;-6682927900631204199&quot;]
+">
+                        <input type="hidden" name="pageHistory" value="0">
+
+
+                        <input type="hidden" name="fbzx" value="-6682927900631204199">
+                        <input type="hidden" name="entry.1452866060" value="<?=user?>" >
+                        <input type="hidden" name="entry.1172957590" value="<?=realname?>" >
+                        <div class="ss-item ss-navigate">
+                            <table id="navigation-table">
+                                <tbody>
+                                    <tr>
+                                        <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
+                                            <script> 
+                                              function success(message) {alert(message); google.script.run.withSuccessHandler(writePageString).givePage("booking","<?=token?>")} 
+                                              function writePageString(html) {document.open(); document.write(html);}
+                                            </script>
+                                            <input type="button" value="Submit" onclick="google.script.run.withSuccessHandler(success).errorCheck(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)" />
+                                            <input type="button" value="<-- Return to website" onclick="google.script.run.withSuccessHandler(writePageString).givePage('booking','<?=token?>')">
+                                            <div id="Loading"></div>
+                                            <div class="ss-password-warning ss-secondary-text">Never submit passwords through Google Forms.</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='myspinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+
+                    </ol>
+                </form>
+            <div class="ss-footer">
+                <div class="ss-attribution"></div>
+                <div class="ss-legal">
+                    <div class="disclaimer-separator"></div>
+                    <div class="disclaimer" dir="ltr">
+                        <div class="powered-by-logo">
+                            <span class="powered-by-text">Powered by</span>
+                            <div class="ss-logo-container">
+                                <div class="ss-logo-image"></div>
+                                <span class="aria-only-help">Google Forms</span>
+                            </div>
+                        </div>
+                        <div class="ss-terms">
+                            <span class="disclaimer-msg">This content is neither created nor endorsed by Google.</span>
+                            <br>
+                            <a href="https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/reportabuse?source=https://docs.google.com/forms/d/19GJDHg5n9Mi9AsLXwcZT5HYUP7X9sLRic0iAhANQmIg/viewform">Report Abuse</a>
+                            -
+                            <a href="http://www.google.com/accounts/TOS">Terms of Service</a>
+                            -
+                            <a href="http://www.google.com/google-d-s/terms.html">Additional Terms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="docs-aria-speakable" class="docs-a11y-ariascreenreader-speakable docs-offscreen" aria-live="assertive" role="region" aria-atomic="" aria-relevant="additions">Screen reader support enabled. </div>
+        </div>
+
+        <script type="text/javascript" src="/static/forms/client/js/2220651830-formviewer_prd.js"></script>
+        <script type="text/javascript">
+H5F.setup(document.getElementById('ss-form'));
+          _initFormViewer(
+            "[100,\x22#28642E\x22,[]\n]\n");</script>
+    </div>
+</div>
+</body>

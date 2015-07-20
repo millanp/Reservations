@@ -1,0 +1,219 @@
+
+	<div id="bodyWrapperForBackground">
+		<div id="sites-page-toolbar" class="sites-header-divider">
+			<div xmlns="http://www.w3.org/1999/xhtml" id="sites-status"
+				class="sites-status" style="display: none;">
+				<div id="sites-notice" class="sites-notice" role="status"
+					aria-live="assertive"></div>
+			</div>
+		</div>
+		<div id="sites-chrome-everything-scrollbar">
+			<div id="sites-chrome-everything" class="">
+				<div id="sites-chrome-page-wrapper" style="direction: ltr">
+					<div id="sites-chrome-page-wrapper-inside">
+						<div xmlns="http://www.w3.org/1999/xhtml"
+							id="sites-chrome-header-wrapper" style="">
+							<table id="sites-chrome-header"
+								class="sites-layout-hbox-centered" cellspacing="0" style="">
+								<tbody>
+									<tr class="sites-header-primary-row"
+										id="sites-chrome-userheader">
+										<td id="sites-header-title"
+											class="sites-header-title-centered sites-chrome-header-valign-middle"
+											role="banner" style="height: 250px"><div
+												class="sites-header-cell-buffer-wrapper">
+												<h2>
+													<div 
+														dir="ltr" id="sites-chrome-userheader-title" class="orangefloatingbox" style="font-family: Ubuntu;font-size:60px">Malabar
+														House</div>
+												</h2>
+											</div></td>
+									</tr>
+									<tr class="sites-header-secondary-row"
+										id="sites-chrome-horizontal-nav">
+										<td colspan="2"
+											id="sites-chrome-header-horizontal-nav-container"
+											role="navigation">
+											<div class="sites-header-nav">
+												<ul class="sites-header-nav-container-links">
+                                                <script type="text/javascript">
+													function writePageString(htmlString) {
+                                                        document.getElementById('xeap').innerHTML = htmlString;
+													}
+                                                    function startSpinner() {
+                                                      var spinner = document.getElementById("myspinner");
+                                                      spinner.style.visibility = "visible";
+                                                    }
+												</script>
+                                                    <div id="navBarSpacer">
+													<li class="current"><a
+														class="sites-navigation-link current"
+														onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('smallHome', '<?=token?>')">Home</a></li>
+													<li class="unselected"><a
+														class="sites-navigation-link unselected"
+														onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('rooms', '<?=token?>')">The
+															Rooms</a></li>
+                                                    <li class="unselected">
+                                                      <a class="sites-navigation-link unselected" 
+                                                        onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('myRequests', '<?=token?>')">
+                                                        My Requests
+                                                      </a>
+                                                    </li>
+													<li class="unselected"><a
+														class="sites-navigation-link unselected"
+														onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('booking', '<?=token?>')">booking</a></li>
+													</div>
+                                                    
+                                                   
+                                                    <li style="border-bottom: 0px solid; position:absolute;">
+                                                        <!--<img class="spinner" id="smallerSpinner" src="http://www.ecr.co.za/static/kagiso_common/images/spinner.gif">!-->
+                                                                                                                <img class="spinner" id="smallerSpinner" src="https://www.projectonfairrepresentation.org/wp-content/themes/notfair/assets/img/spinner.gif">
+
+                                                    </li>
+                                                    <li id="logOutButtonTwo">
+                                                      <a style="position:fixed" onclick="startSmallerSpinner(); google.script.run.withSuccessHandler(writeFullPageString).logOut('<?=token?>', '<?=user?>')">Log Out</a>
+                                                    </li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div id="sites-chrome-main-wrapper" class="glass">
+							
+					
+							<div id="sites-chrome-main-wrapper-inside">
+								<table id="sites-chrome-main" class="sites-layout-hbox"
+									cellspacing="0" cellpadding="{scmCellpadding}" border="0">
+									<tbody>
+										<tr>
+											
+											<td id="sites-canvas-wrapper">
+												<div id="sites-canvas" role="main">
+                                                    <h1 style="
+    text-align: center;
+">Welcome to our website!</h1>
+													<div id="goog-ws-editor-toolbar-container"></div>
+													<div xmlns="http://www.w3.org/1999/xhtml" id="title-crumbs"
+														style="display: none;"></div>
+													
+													<div id="sites-canvas-main" class="sites-canvas-main">
+														<div id="sites-canvas-main-content">
+															<div xmlns="http://www.w3.org/1999/xhtml"
+																class="sites-layout-name-two-column-hf sites-layout-vbox">
+																<div class="sites-layout-tile sites-tile-name-header">
+																	<div dir="ltr">
+																		<div style="text-align: center">
+																			<i
+																				style="font-family: arial, sans-serif; font-size: medium; line-height: 1.5; background-color: transparent"><span
+																				style="color: rgb(68, 68, 68); text-align: justify">"Duis
+																					aute irure dolor in reprehenderit in voluptate
+																					velit esse cillum dolore eu fugiat nulla
+																					pariatur.&nbsp;</span><span
+																				style="color: rgb(68, 68, 68); line-height: 1.5; text-align: justify; background-color: transparent">Excepteur
+																					sint occaecat cupidatat non proident, sunt in culpa
+																					qui officia deserunt mollit anim id est laborum."</span></i>
+																		</div>
+																		<div style="text-align: center">
+																			<font face="arial, sans-serif" size="3"><i><span
+																					style="color: rgb(68, 68, 68); line-height: 1.5; text-align: justify; background-color: transparent"><br></span></i></font>
+																		</div>
+																	</div>
+																</div>
+																<table cellspacing="0" class="sites-layout-hbox">
+																	<tbody>
+																		<tr>
+																			<td
+																				class="sites-layout-tile sites-tile-name-content-1"><div
+																					dir="ltr">
+																					<div>
+																						<p
+																							style="text-align: left; color: rgb(68, 68, 68)">
+																							<b
+																								style="text-align: justify; line-height: 1.5; background-color: transparent">Lorem
+																								ipsum dolor sit amet,</b><span
+																								style="text-align: justify; line-height: 1.5; background-color: transparent">
+																								consectetur adipisicing elit, sed do eiusmod
+																								tempor incididunt ut labore et dolore magna
+																								aliqua. Ut enim ad minim veniam, quis nostrud
+																								exercitation ullamco laboris nisi ut aliquip ex
+																								ea commodo consequat. Duis aute irure dolor in
+																								reprehenderit in voluptate velit esse cillum
+																								dolore eu fugiat nulla pariatur. Excepteur sint
+																								occaecat cupidatat non proident, sunt in culpa
+																								qui officia deserunt mollit anim id est laborum.
+																								Lorem ipsum dolor sit amet, consectetur
+																								adipisicing elit, sed do eiusmod tempor
+																								incididunt ut labore et dolore magna aliqua. Ut
+																								enim ad minim veniam, quis nostrud exercitation
+																								ullamco laboris nisi ut aliquip ex ea commodo
+																								consequat.</span>
+																						</p>
+																						<p
+																							style="color: rgb(68, 68, 68); text-align: justify">
+																							Ut enim ad minim veniam, quis nostrud
+																							exercitation ullamco laboris nisi ut aliquip ex
+																							ea commodo consequat. Duis aute irure dolor in
+																							reprehenderit in voluptate velit esse cillum
+																							dolore eu fugiat nulla pariatur.&nbsp;<span
+																								style="line-height: 1.5; background-color: transparent">Excepteur
+																								sint occaecat cupidatat non proident, sunt in
+																								culpa qui officia deserunt mollit anim id est
+																								laborum.</span>
+																						</p>
+																					</div>
+																					<span style="color: rgb(68, 68, 68)"> </span>
+																				</div></td>
+																			<td
+																				class="sites-layout-tile sites-tile-name-content-2"><div
+																					dir="ltr">
+																					<p
+																						style="color: rgb(68, 68, 68); text-align: justify">
+																						<b>Gallery Preview:&nbsp;</b><span
+																							style="line-height: 1.5; background-color: transparent">aute
+																							irure dolor in reprehenderit in voluptate velit
+																							esse cillum dolore eu fugiat...</span>
+																					</p>
+																					<div style="display: block; text-align: left">
+																						<img border="0"
+																							src="https://sites.google.com/site/houseonmalabar/_/rsrc/1417893280191/home/1a.png"
+																							style="width: 100%; display: block; margin-right: auto; text-align: left">
+																					</div>
+																					<div style="display: block; text-align: left">
+																						<br>
+																					</div>
+																					<div style="display: block; text-align: left">
+																						<img border="0"
+																							src="https://sites.google.com/site/houseonmalabar/_/rsrc/1417893280191/home/1b.png"
+																							style="width: 100%">
+																					</div>
+																				</div></td>
+																		</tr>
+																	</tbody>
+																</table>
+																
+															</div>
+														</div>
+													</div>
+													<div id="sites-canvas-bottom-panel">
+														<div id="sites-attachments-container"></div>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						
+						</div>
+						<div id="sites-chrome-footer-wrapper">
+							<div id="sites-chrome-footer-wrapper-inside">
+								<div id="sites-chrome-footer"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>

@@ -1,0 +1,103 @@
+<div id='wrapper'> 
+<div class='boxed'>
+<table style="background-color: rgba(255, 255, 255, 0.4)" id="dashboard">
+  <tr>
+    <td class="dashHeader" colspan="2">
+    <b>User</b>
+    </td>
+    <td>
+    <b class="dashHeader">Current Requests</b>
+    </td>
+    <td>
+    <b class="dashHeader">Take Action</b>
+    </td>
+  </tr>
+
+  <style> td {border:1px solid black} </style>
+  <? var props = PropertiesService.getScriptProperties().getProperties();
+     var accounts = JSON.parse(props["accounts"]);
+     var potentialUsers = JSON.parse(props["potentialAccounts"]);
+     var requestList;
+     for (var potentialUser in potentialUsers) {
+       //if (potentialUsers[potentialUser]["accountEmailToken"] === "") {
+     ?>
+     
+       <tr class='potential:<?=potentialUser?>'>
+         <td colspan="3">
+           <?= potentialUsers[potentialUser]["name"] ?> has requested an account, using the email "<?= potentialUser ?>".
+         </td>
+         <td>
+         <? if (potentialUsers[potentialUser]["accountEmailToken"] === "") { ?>
+         <input type="button" value="Approve" onclick="google.script.run.withSuccessHandler(approveAccount).approveAccount('<?=token?>', '<?=potentialUser?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+         <? } else { ?>
+         Waiting for them to confirm...
+         <? } ?>
+         <input type="button" value="Reject" onclick="google.script.run.withSuccessHandler(removeAccountOrRequest).rejectAccount('<?=token?>', '<?=potentialUser?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+         
+         </td>
+       </tr>
+  <?   //}
+     }
+     for (var user in accounts) {
+       if (user !== "admin") {
+         requestList = makeStatusText_(user);
+         ?>
+         <tr class='<?=user?>' >
+           <td rowspan='<?=requestList.length?>'>
+             <input  id="removeAccount" type="button" value="X" onclick="google.script.run.withSuccessHandler(removeAccountOrRequest).deleteAccount('<?=token?>', '<?=user?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+           </td>
+           <td rowspan='<?=requestList.length?>'>
+             <?= accounts[user]["name"] ?>
+           </td>
+           <?
+           if (typeof(requestList) !== "boolean") { ?>
+             <td class="<?=requestList[0][1]?>">
+               <?= requestList[0][0]?>
+             </td>
+             <td class="<?=requestList[0][1]?>" id="<?=requestList[0][1]?>">
+             <?
+             if (JSON.parse(props[requestList[0][1]])["approved"] === false) { ?>
+                 <input type="button" value="Approve for free" onclick="google.script.run.withSuccessHandler(setApproved).freeApproval('<?=token?>', '<?=requestList[0][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+                 <input type="button" value="Approve with fee ($)" onclick="google.script.run.withSuccessHandler(setApproved).paidApproval('<?=token?>', '<?=requestList[0][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+                 <input type="button" value="Reject" onclick="google.script.run.withSuccessHandler(removeAccountOrRequest).rejectRequest('<?=token?>', '<?=requestList[0][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+             <?} else {?>
+               Awaiting their confirmation.
+               <input type="button" value="Cancel" onclick="google.script.run.withSuccessHandler(removeAccountOrRequest).rejectRequest('<?=token?>', '<?=requestList[0][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+             <?}?>
+             </td>
+           <?
+           } else { ?>
+             <td colspan="2">
+               No current requests found
+             </td>
+           <?
+           } ?>
+         </tr>
+         <?
+         for (var i=1; i<requestList.length; i++) {
+         ?>
+             <tr class='<?=user?>' >
+               <td class="<?=requestList[i][1]?>"> <?=requestList[i][0]?> </td>
+               <td class="<?=requestList[i][1]?>" id="<?=requestList[i][1]?>">
+               <?
+               if (JSON.parse(props[requestList[i][1]])["approved"] === false) { ?>
+                 <input type="button" value="Approve for free" onclick="google.script.run.withSuccessHandler(setApproved).freeApproval('<?=token?>', '<?=requestList[i][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+                 <input type="button" value="Approve with fee ($)" onclick="google.script.run.withSuccessHandler(setApproved).paidApproval('<?=token?>', '<?=requestList[i][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+                 <input type="button" value="Reject" onclick="google.script.run.withSuccessHandler(removeAccountOrRequest).rejectRequest('<?=token?>', '<?=requestList[i][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+               <?} else {?>
+                 Awaiting their confirmation.
+                 <input type="button" value="Cancel" onclick="google.script.run.withSuccessHandler(removeAccountOrRequest).rejectRequest('<?=token?>', '<?=requestList[i][1]?>'); document.getElementById('myspinner').style.visibility = 'visible'" >
+               <?}?>
+               </td>
+             </tr>
+         <?
+         }
+       }
+     }
+       ?>
+</table>
+<br>
+<input type="button" value="Refresh" onclick="google.script.run.withSuccessHandler(writePageString).givePage('dashboard','<?=token?>'); document.getElementById('myspinner').style.visibility = 'visible'"><br>
+<img src="http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif" style="visibility:hidden" id="myspinner">
+</div>
+</div>
